@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+import { connect } from 'react-redux';
+
+import './App.css';
+import AppRouter from './router/AppRouter';
+import { startSetTables } from './action/table';
+
+function App(props) {
+  useEffect(() => {
+    if(props.user.authenticated)
+      props.startSetTables()
+  });
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppRouter />
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  startSetTables: () => dispatch(startSetTables())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
