@@ -1,4 +1,4 @@
-# pubjam 🎸 : a song request app
+# pubjam 🎸 : a song request app for restaurants, cafes and bars!
 
 * generates qr codes for tables 🥂 
 * using these qr codes, customers can make song requests 🎤
